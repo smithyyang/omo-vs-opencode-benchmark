@@ -1,0 +1,20 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Local environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# OpenCode local artifacts
+.opencode/
