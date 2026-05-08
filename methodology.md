@@ -1,42 +1,28 @@
 # Methodology
 
-## 测试方法 / Test Setup
+[中文说明 / Chinese Version](./methodology_CN.md)
 
-本实验目标是尽量控制变量，只比较 agent 组织方式对 research 任务结果的影响。
+## Test Setup
 
-统一条件如下：
+The goal of this experiment was to control as many variables as possible and isolate the impact of agent organization on research-task outcomes.
 
-- 相同任务 prompt
-- 相同模型：`GPT-5.4`
-- 相同 MCP 配置
-- 相同任务类型：研究型、资料核验型问题
-- 结果以最终产出质量与 token 成本共同评估
+Each run used the same:
 
-The experiment controlled for the main variables and only changed the agent setup. Each run used:
+- task prompt
+- model: `GPT-5.4`
+- MCP configuration
+- research-oriented question style
+- evaluation approach combining answer quality and token cost
 
-- The same task prompt
-- The same model: `GPT-5.4`
-- The same MCP configuration
-- The same research-oriented question style
-- The same evaluation logic combining quality and token cost
-
-## 测试对象 / Compared Setups
+## Compared Setups
 
 - `omo`
-- `裸 OpenCode（旧版）`
-- `裸 OpenCode + Librarian 提示词`
+- `bare OpenCode (older)`
+- `bare OpenCode + Librarian prompt`
 
-这里的 `Librarian` 指从 `oh-my-opencode` 中提取并迁移到裸 OpenCode 的研究型检索提示词。
+Here, `Librarian` refers to the research-oriented retrieval prompt extracted from `oh-my-opencode` and migrated into bare OpenCode.
 
-## token 计算方式 / Token Accounting
-
-token 统计方式不是简单把某一列“Token 总数”直接相加，而是按每次调用的真实成本累计：
-
-- 输入 token
-- 输出 token
-- 推理 token
-
-也就是说，最终展示的 token 消耗是基于一次完整任务执行过程中每轮调用的 `input + output + reasoning` 汇总，而不是直接抄录某个面板上的单列总数。
+## Token Accounting
 
 The reported token usage is not a naive sum of one dashboard column. It is computed from the actual cost of each call in the run:
 
@@ -46,53 +32,53 @@ The reported token usage is not a naive sum of one dashboard column. It is compu
 
 The final number therefore represents the accumulated full-run cost across all calls, rather than a direct copy of a single token field.
 
-## 评分维度 / Evaluation Dimensions
+## Evaluation Dimensions
 
-本仓库主要从以下 4 个维度评估结果：
+This repository evaluates results along four primary dimensions:
 
-1. `token 消耗`
-2. `关键隐藏事实捕获`
-3. `来源质量`
-4. `结论可用性`
+1. `token usage`
+2. `capture of critical hidden facts`
+3. `source quality`
+4. `usability of the conclusion`
 
-### 1. token 消耗
+### 1. Token Usage
 
-关注完成一次研究任务需要付出的总 token 成本，而不是只看回答是否更长或更短。
+This measures the total token cost required to complete a research task, rather than simply whether an answer is longer or shorter.
 
-### 2. 关键隐藏事实捕获
+### 2. Capture of Critical Hidden Facts
 
-重点观察系统是否找到了真正改变判断结论的事实，例如：
+This focuses on whether the system found the facts that truly changed the decision outcome, such as:
 
-- 项目已经停止维护
-- 官方 LTS/支持策略即将终止
-- 创始人或核心维护者公开建议迁移到替代项目
+- a project being discontinued
+- an official LTS or support policy being scheduled to end
+- a founder or core maintainer publicly recommending migration to an alternative project
 
-这类信息通常不会出现在表层 benchmark 对比中，但会直接改变研究结论是否可靠。
+These details usually do not appear in surface-level benchmark comparisons, but they can directly determine whether a research conclusion is reliable.
 
-### 3. 来源质量
+### 3. Source Quality
 
-优先级从高到低通常为：
+The general priority order is:
 
-- 官方文档
-- 官方 issue / PR / release / roadmap
-- 项目仓库中的可核验说明
-- 有方法学和原始数据的独立 benchmark
-- 二手文章或 SEO 汇总（最低优先级）
+- official documentation
+- official issues / PRs / releases / roadmaps
+- verifiable statements inside the project repository
+- independent benchmarks with methodology and raw data
+- secondary articles or SEO summaries as the lowest-priority source type
 
-### 4. 结论可用性
+### 4. Usability of the Conclusion
 
-判断最终回答是否真的能支持技术选型，而不只是堆砌资料。可用结论通常应满足：
+This asks whether the final answer can actually support a technical decision, instead of merely accumulating references. A usable conclusion should:
 
-- 能给出明确方向
-- 能指出适用前提
-- 能解释风险与边界
-- 能让读者据此继续验证
+- provide a clear direction
+- state the conditions under which that direction applies
+- explain risks and boundaries
+- allow the reader to continue validating the claim
 
-## 解释原则 / Interpretation Principle
+## Interpretation Principle
 
-本实验不把“token 越少”直接等同于“结果越好”。
+This experiment does not treat “fewer tokens” as automatically equivalent to “better results.”
 
-- 如果 token 很低，但遗漏关键隐藏事实，那么结果仍然可能误导决策。
-- 如果 token 略高，但显著提升了关键事实命中率与来源质量，这种额外消耗在研究任务中通常是值得的。
+- If token usage is very low but a critical hidden fact is missed, the result can still mislead a decision.
+- If token usage is somewhat higher but it significantly improves hidden-fact capture and source quality, that extra cost is often worthwhile in research tasks.
 
-因此，本仓库的核心关注点是：`单位 token 成本下，谁更容易产出可用于决策的研究结论。`
+The core question of this repository is therefore: `who is more likely to produce decision-useful research conclusions per unit of token cost?`

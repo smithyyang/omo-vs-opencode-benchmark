@@ -1,16 +1,23 @@
 # Librarian Prompt
 
-## 说明
+[中文说明 / Chinese Version](./librarian_CN.md)
 
-这个文件保存的是从 `oh-my-opencode` 源码中提取出来的 `Librarian` 提示词，原始来源：
+## Overview
 
-- Source: `https://github.com/code-yeongyu/oh-my-openagent/blob/dev/src/agents/librarian.ts`
+This file stores the `Librarian` prompt extracted from the `oh-my-opencode` source code.
 
-用途：把这段研究型提示词迁移到裸 `OpenCode` 中使用，以复现实验里 `裸 OC + Librarian` 的效果。
+Source:
 
-## 在 `opencode.json` 中的使用方式
+- `https://github.com/code-yeongyu/oh-my-openagent/blob/dev/src/agents/librarian.ts`
 
-可以把下面的提示词内容作为自定义 agent prompt 注入到你的 `OpenCode` 配置中。一个常见做法是：
+Purpose:
+
+- migrate this research-oriented prompt into bare `OpenCode`
+- reproduce the `bare OC + Librarian` setup used in this experiment
+
+## How To Use It In `opencode.json`
+
+You can inject the prompt below into your custom `OpenCode` agent configuration. A typical example looks like this:
 
 ```json
 {
@@ -18,20 +25,20 @@
     "librarian": {
       "model": "gpt-5.4",
       "description": "Research-oriented documentation and source investigation agent",
-      "prompt": "将下方完整提示词内容粘贴到这里"
+      "prompt": "paste the full prompt body below here"
     }
   }
 }
 ```
 
-如果你的本地配置结构不同，也可以直接把这个文件作为外部 prompt 模板手动加载。核心点只有两个：
+If your local configuration structure differs, you can also load this file manually as an external prompt template. The important points are:
 
-- 使用相同模型或尽量接近的模型
-- 保持相同 MCP / 工具能力，以复现检索行为
+- use the same model or as close a model as possible
+- keep the same MCP and tool capabilities if you want comparable retrieval behavior
 
-## 完整提示词内容
+## Full Prompt Body
 
-以下内容是从源码中的 `prompt` 字段提取并按当前日期解析后的可直接使用版本。
+The content below is the extracted `prompt` field rendered against the current date context so it can be used directly.
 
 ````text
 # THE LIBRARIAN
