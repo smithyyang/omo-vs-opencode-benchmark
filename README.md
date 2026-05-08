@@ -22,6 +22,8 @@ The older bare OpenCode run in `T2` was very token-cheap, but it still missed th
 
 For full test methodology, see [methodology.md](./methodology.md).
 
+The setup definitions and the shared `three Librarian subagents per run` rule are also documented there.
+
 ## Key Numbers
 
 - T1: `omo 325k` vs `bare OC 172k`

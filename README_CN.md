@@ -22,6 +22,8 @@
 
 完整测试方法见 [methodology_CN.md](./methodology_CN.md)。
 
+三组设置的定义，以及“每次实验都会拉起 3 个 Librarian subagent”这一共同规则，也在该文件中说明。
+
 ## 关键数字
 
 - T1: `omo 325k` vs `裸 OC 172k`

@@ -22,6 +22,24 @@
 
 这里的 `Librarian` 指从 `oh-my-opencode` 中提取并迁移到裸 OpenCode 的研究型检索提示词。
 
+### 三组设置的具体含义
+
+- `omo`：直接使用 `oh-my-opencode` 执行任务。
+- `裸 OpenCode（旧版）`：使用裸 `OpenCode`，并配一个普通的、非 omo 来源的 Librarian 风格提示词。
+- `裸 OpenCode + Librarian 提示词`：使用裸 `OpenCode`，但其中的 Librarian agent 明确配置为采用从 `oh-my-opencode` 提取出来的 Librarian 提示词。
+
+### Librarian 拉取方式
+
+所有实验都保持同一类高层检索结构：每次研究任务都会拉起 `3 个 Librarian subagent` 参与测试。
+
+因此，这里的比较并不是绝对意义上的“有 Librarian”对“没 Librarian”，而是比较：
+
+- `omo` 自带 agent 体系下的表现
+- `裸 OpenCode` 搭配普通 Librarian 风格提示词的表现
+- `裸 OpenCode` 搭配 `omo` 的 Librarian 提示词后的表现
+
+核心关注点也因此更明确：Librarian 提示词设计与 agent 编排方式，究竟会怎样影响 token 消耗、关键隐藏事实捕获、来源质量以及最终结论质量。
+
 ## token 计算方式
 
 token 统计方式不是简单把某一列“Token 总数”直接相加，而是按每次调用的真实成本累计：

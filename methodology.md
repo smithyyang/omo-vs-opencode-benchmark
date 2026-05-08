@@ -22,6 +22,24 @@ Each run used the same:
 
 Here, `Librarian` refers to the research-oriented retrieval prompt extracted from `oh-my-opencode` and migrated into bare OpenCode.
 
+### Setup Definitions
+
+- `omo`: the task was executed with `oh-my-opencode` itself.
+- `bare OpenCode (older)`: bare `OpenCode` with a generic, non-omo Librarian-style prompt.
+- `bare OpenCode + Librarian prompt`: bare `OpenCode` using a Librarian agent configured with the `omo` Librarian prompt extracted from `oh-my-opencode`.
+
+### Librarian Pulling Strategy
+
+All experiments used the same high-level retrieval shape: each run pulled `three Librarian subagents` during the research process as part of the test setup.
+
+This means the comparison here is not between “with Librarian” and “without Librarian” in the absolute sense. Instead, it compares:
+
+- `omo` running with its own agent system
+- `bare OpenCode` running with a generic Librarian-style prompt
+- `bare OpenCode` running with a Librarian configured from `omo`'s Librarian prompt
+
+The key question is therefore how much the Librarian prompt design and agent wiring affected token usage, hidden-fact capture, source quality, and final conclusion quality.
+
 ## Token Accounting
 
 The reported token usage is not a naive sum of one dashboard column. It is computed from the actual cost of each call in the run:
