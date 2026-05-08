@@ -20,6 +20,8 @@ The older bare OpenCode run in `T2` was very token-cheap, but it still missed th
 | T2 Bun vs Node vs Deno | 335k | 30k (older bare OC) / 228k (bare OC + Librarian) | omo, bare OC + Librarian |
 | T3 Redis vs Valkey vs KeyDB | 432k | 26k (bare OC + Librarian) | bare OC + Librarian |
 
+For full test methodology, see [methodology.md](./methodology.md).
+
 ## Key Numbers
 
 - T1: `omo 325k` vs `bare OC 172k`
@@ -57,7 +59,7 @@ All three setups participated in this round.
 | Token usage | ~30k | ~335k | ~218-238k |
 | Final context | 30,125 | 74,873 | 69,672 |
 | Number of calls | 1 | 6 | 4-5 |
-| Number of secondary sources | 5 | 6 | 7 |
+| Number of primary sources | 5 | 6 | 7 |
 | Found exact Deno LTS end date | ❌ | ✅ 2026-04-30 | ❌ |
 | Found official Deno strategy blog post | ❌ | ❌ | ✅ Deploy/KV strategy shift + "greatly-exaggerated" blog post |
 | Rejected low-quality secondary articles | ❌ Mixed them in | ⚠️ Partially | ✅ Strictly enforced |

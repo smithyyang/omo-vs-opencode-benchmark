@@ -20,6 +20,8 @@
 | T2 Bun vs Node vs Deno | 335k | 30k（旧版裸 OC） / 228k（裸 OC + Librarian） | omo、裸 OC + Librarian |
 | T3 Redis vs Valkey vs KeyDB | 432k | 26k（裸 OC + Librarian） | 裸 OC + Librarian |
 
+完整测试方法见 [methodology_CN.md](./methodology_CN.md)。
+
 ## 关键数字
 
 - T1: `omo 325k` vs `裸 OC 172k`
@@ -57,7 +59,7 @@
 | 消耗 token | ~30k | ~335k | ~218-238k |
 | 最终 context | 30,125 | 74,873 | 69,672 |
 | 调用次数 | 1 | 6 | 4-5 |
-| 二手来源数量 | 5个 | 6个 | 7个 |
+| 一手来源数量 | 5个 | 6个 | 7个 |
 | 找到 Deno LTS 具体终止日期 | ❌ | ✅ 2026-04-30 | ❌ |
 | 找到 Deno 官方战略说明博文 | ❌ | ❌ | ✅ Deploy/KV策略调整 + "greatly-exaggerated"博文 |
 | 排除二手文章 | ❌ 混入了 | ⚠️ 部分 | ✅ 严格执行 |
